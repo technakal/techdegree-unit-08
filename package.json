@@ -1,0 +1,35 @@
+{
+  "name": "techdegree-unit-08",
+  "version": "1.0.0",
+  "description": "A web application for managing a library's collection of books. Uses a JavaScript (node and Express) server and a SQLite database.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technakal/techdegree-unit-08.git"
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "express",
+    "sequelize",
+    "pug",
+    "sqlite"
+  ],
+  "author": "N. A. Keener",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/technakal/techdegree-unit-08/issues"
+  },
+  "homepage": "https://github.com/technakal/techdegree-unit-08#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pug": "^2.0.3",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0",
+    "sqlite3": "^4.0.6"
+  }
+}
