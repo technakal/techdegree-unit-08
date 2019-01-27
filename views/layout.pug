@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 html(class="no-js" lang="en" dir="ltr")
-  meta(charset='utf-8')
-  meta(http-equiv='x-ua-compatible', content='ie=edge')
-  meta(name='viewport', content='width=device-width, initial-scale=1.0')
-  title Brookhaven Community Library | eCatalogue
-  link(type="text/css" rel="stylesheet" href="/static/stylesheets/style.css")
-body
-  header
-    h1 Brookhaven Community Library
-    h2 eCatalogue
-  block content
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= pageTitle
+    link(type="text/css" rel="stylesheet" href="/static/stylesheets/style.css")
+    
+  body
+    include header
+    block content
+

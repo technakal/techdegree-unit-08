@@ -13,13 +13,14 @@ router.get('/', (req, res) => {
       if (books) {
         res.render('index', {
           books: books,
+          pageTitle: 'Home | Brookhaven Community Library',
         });
       } else {
-        res.render('not_found');
+        res.render('not_found', { pageTitle: 'Not Found | BCL' });
       }
     })
     .catch(err => {
-      res.render('error');
+      res.render('error', { pageTitle: 'Error | BCL' });
     });
 });
 
@@ -31,6 +32,7 @@ router.get('/new', (req, res) => {
   res.render('new_book', {
     book: Book.build(),
     title: 'Create New Book',
+    pageTitle: 'Create Book | BCL',
   });
 });
 
@@ -45,15 +47,17 @@ router.post('/', (req, res, next) => {
     })
     .catch(err => {
       if (err.name === 'SequelizeValidationError') {
-        res.render('/books/new', {
+        res.render('new_book', {
           book: Book.build(req.body),
+          title: 'Create New Book',
+          pageTitle: 'Create Book | BCL',
           errors: err.errors,
         });
       } else {
         throw err;
       }
     })
-    .catch(err => res.render('error'));
+    .catch(err => res.render('error', { pageTitle: 'Error | BCL' }));
 });
 
 /**
@@ -67,13 +71,15 @@ router.get('/:id', (req, res) => {
       if (book) {
         res.render('book_detail', {
           book: book,
+          title: `Update "${book.title}"`,
+          pageTitle: 'Update Book | BCL',
         });
       } else {
-        res.render('not_found');
+        res.render('not_found', { pageTitle: 'Not Found | BCL' });
       }
     })
     .catch(err => {
-      res.render('error');
+      res.render('error', { pageTitle: 'Error | BCL' });
     });
 });
 
@@ -82,8 +88,29 @@ router.get('/:id', (req, res) => {
  * @param {string} id - The id of the book.
  */
 router.post('/:id', (req, res) => {
-  const bookId = req.params.id;
-  res.redirect(`/books/${bookId}`);
+  Book.findById(req.params.id)
+    .then(book => {
+      if (book) {
+        return book.update(req.body);
+      } else {
+        res.render('not_found', { pageTitle: 'Not Found | BCL' });
+      }
+    })
+    .then(book => {
+      res.redirect(`/books/${book.id}`);
+    })
+    .catch(err => {
+      if (err.name === 'SequelizeValidationError') {
+        let book = Book.build(req.body);
+        book.id = req.params.id;
+        res.render('book_detail', {
+          book: book,
+          title: `Update "${book.title}"`,
+          errors: err.errors,
+          pageTitle: 'Update Book | BCL',
+        });
+      }
+    });
 });
 
 /**
@@ -96,7 +123,7 @@ router.post('/:id/delete', (req, res) => {
       if (book) {
         return book.destroy();
       } else {
-        res.render('not_found');
+        res.render('not_found', { pageTitle: 'Not Found | BCL' });
       }
     })
     .catch(err => res.render('error'));

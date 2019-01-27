@@ -1,7 +1,8 @@
-extends layout.pug
+extends layout
 
 block content
   h3 Books
+  .search
   p
     a.button(href="/books/new") Create New Book
   if books
@@ -22,3 +23,4 @@ block content
             td= book.year
   else
     h4 Sorry! No books found in the catalogue.
+  script(src="/static/scripts/script.js")
