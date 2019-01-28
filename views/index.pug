@@ -2,7 +2,9 @@ extends layout
 
 block content
   h3 Books
-  .search
+  .search.hidden
+    label(for="search") Search
+    input#search(type="search", name="search" placeholder="Enter title, author, genre, or year...")
   p
     a.button(href="/books/new") Create New Book
   if books
@@ -23,4 +25,9 @@ block content
             td= book.year
   else
     h4 Sorry! No books found in the catalogue.
+  
+  h4#noResults.hidden Sorry. No results found using those search criteria.
+  
+  .pagination.hidden
+
   script(src="/static/scripts/script.js")

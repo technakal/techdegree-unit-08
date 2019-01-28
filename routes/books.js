@@ -13,14 +13,16 @@ router.get('/', (req, res) => {
       if (books) {
         res.render('index', {
           books: books,
-          pageTitle: 'Home | Brookhaven Community Library',
+          pageTitle: 'Home | Brookville Public Library',
         });
       } else {
-        res.render('not_found', { pageTitle: 'Not Found | BCL' });
+        res.render('not_found', {
+          pageTitle: 'Not Found | Brookville Public Library',
+        });
       }
     })
     .catch(err => {
-      res.render('error', { pageTitle: 'Error | BCL' });
+      res.render('error', { pageTitle: 'Error | Brookville Public Library' });
     });
 });
 
@@ -32,7 +34,7 @@ router.get('/new', (req, res) => {
   res.render('new_book', {
     book: Book.build(),
     title: 'Create New Book',
-    pageTitle: 'Create Book | BCL',
+    pageTitle: 'Create Book | Brookville Public Library',
   });
 });
 
@@ -50,14 +52,16 @@ router.post('/', (req, res, next) => {
         res.render('new_book', {
           book: Book.build(req.body),
           title: 'Create New Book',
-          pageTitle: 'Create Book | BCL',
+          pageTitle: 'Create Book | Brookville Public Library',
           errors: err.errors,
         });
       } else {
         throw err;
       }
     })
-    .catch(err => res.render('error', { pageTitle: 'Error | BCL' }));
+    .catch(err =>
+      res.render('error', { pageTitle: 'Error | Brookville Public Library' })
+    );
 });
 
 /**
@@ -72,14 +76,16 @@ router.get('/:id', (req, res) => {
         res.render('book_detail', {
           book: book,
           title: `Update "${book.title}"`,
-          pageTitle: 'Update Book | BCL',
+          pageTitle: 'Update Book | Brookville Public Library',
         });
       } else {
-        res.render('not_found', { pageTitle: 'Not Found | BCL' });
+        res.render('not_found', {
+          pageTitle: 'Not Found | Brookville Public Library',
+        });
       }
     })
     .catch(err => {
-      res.render('error', { pageTitle: 'Error | BCL' });
+      res.render('error', { pageTitle: 'Error | Brookville Public Library' });
     });
 });
 
@@ -93,7 +99,9 @@ router.post('/:id', (req, res) => {
       if (book) {
         return book.update(req.body);
       } else {
-        res.render('not_found', { pageTitle: 'Not Found | BCL' });
+        res.render('not_found', {
+          pageTitle: 'Not Found | Brookville Public Library',
+        });
       }
     })
     .then(book => {
@@ -107,7 +115,7 @@ router.post('/:id', (req, res) => {
           book: book,
           title: `Update "${book.title}"`,
           errors: err.errors,
-          pageTitle: 'Update Book | BCL',
+          pageTitle: 'Update Book | Brookville Public Library',
         });
       }
     });
@@ -123,7 +131,9 @@ router.post('/:id/delete', (req, res) => {
       if (book) {
         return book.destroy();
       } else {
-        res.render('not_found', { pageTitle: 'Not Found | BCL' });
+        res.render('not_found', {
+          pageTitle: 'Not Found | Brookville Public Library',
+        });
       }
     })
     .catch(err => res.render('error'));
