@@ -100,8 +100,6 @@ input[type='text'] {
   display: flex;
   height: auto;
   position: initial;
-  opacity: 1;
-  transition: height 0.2s ease-out, opacity 0.6s ease-out, position 0s ease;
   visibility: visible;
 }
 
@@ -138,4 +136,37 @@ input[type='text'] {
   padding: 0.25rem;
   text-align: center;
   width: 35px;
+}
+
+.placeholder {
+  animation-name: flicker;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  background: lightgray;
+  border-radius: 15px;
+}
+
+.placeholder-search {
+  height: 60px;
+  width: 275px;
+}
+
+.placeholder-table {
+  height: 350px;
+  width: 650px;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
 }

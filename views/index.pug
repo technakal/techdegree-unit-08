@@ -2,13 +2,15 @@ extends layout
 
 block content
   h3 Books
+  .placeholder.placeholder-search
   .search.hidden
     label(for="search") Search
     input#search(type="search", name="search" placeholder="Enter title, author, genre, or year...")
   p
     a.button(href="/books/new") Create New Book
+  .placeholder.placeholder-table
   if books
-    table
+    table.hidden
       thead
         tr
           th Title
