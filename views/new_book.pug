@@ -1,12 +1,13 @@
 extends layout.pug
 
 block content
-  h3= title
+  div.container
+    h3= title
 
-  include errors
+    include errors
 
-  form(action="/books" method="post")
-    include form
+    form(action="/books" method="post")
+      include form
 
-    p
-      a.button(href="/books") Cancel
+      p
+        a.button(href="/books") Cancel

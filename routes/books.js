@@ -136,8 +136,10 @@ router.post('/:id/delete', (req, res) => {
         });
       }
     })
+    .then(book => {
+      res.redirect('/books');
+    })
     .catch(err => res.render('error'));
-  res.redirect('/books');
 });
 
 module.exports = router;

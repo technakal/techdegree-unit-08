@@ -1,35 +1,36 @@
 extends layout
 
 block content
-  h3 Books
-  .placeholder.placeholder-search
-  .search.hidden
-    label(for="search") Search
-    input#search(type="search", name="search" placeholder="Enter title, author, genre, or year...")
-  p
-    a.button(href="/books/new") Create New Book
-  .placeholder.placeholder-table
-  if books
-    table.hidden
-      thead
-        tr
-          th Title
-          th Author
-          th Genre
-          th Year
-      tbody
-        each book in books
+  div.container
+    h3 Book Catalogue
+    .placeholder.placeholder-search
+    .search.hidden
+      label(for="search") Search
+      input#search(type="search", name="search" placeholder="Enter title, author, genre, or year...")
+    p
+      a.button(href="/books/new") Create New Book
+    .placeholder.placeholder-table
+    if books
+      table.hidden
+        thead
           tr
-            td
-              a(href=`/books/${book.id}`)= book.title
-            td= book.author
-            td= book.genre
-            td= book.year
-  else
-    h4 Sorry! No books found in the catalogue.
-  
-  h4#noResults.hidden Sorry. No results found using those search criteria.
-  
-  .pagination.hidden
+            th Title
+            th Author
+            th Genre
+            th Year
+        tbody
+          each book in books
+            tr
+              td
+                a(href=`/books/${book.id}`)= book.title
+              td= book.author
+              td= book.genre
+              td= book.year
+    else
+      h4 Sorry. No results found.
+    
+    h4#noResults.hidden Sorry. No results found.
+    
+    .pagination.hidden
 
   script(src="/static/scripts/script.js")

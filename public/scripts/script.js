@@ -207,15 +207,15 @@ const setActivePage = pageNum => {
  */
 const interval = setInterval(() => {
   if (document.querySelector('table') !== undefined) {
-    setTimeout(() => {
-      body.removeChild(document.querySelector('.placeholder-table'));
-      body.removeChild(document.querySelector('.placeholder-search'));
-      books.initialBooks = document.querySelectorAll('tbody tr');
-      books.filteredBooks = books.initialBooks;
-      addPagination(books.initialBooks);
-      setActivePage(1);
-      setUpSearch();
-      clearInterval(interval);
-    }, 1500);
+    const placeholderTable = document.querySelector('.placeholder-table');
+    const placeholderSearch = document.querySelector('.placeholder-search');
+    placeholderTable.parentNode.removeChild(placeholderTable);
+    placeholderSearch.parentNode.removeChild(placeholderSearch);
+    books.initialBooks = document.querySelectorAll('tbody tr');
+    books.filteredBooks = books.initialBooks;
+    addPagination(books.initialBooks);
+    setActivePage(1);
+    setUpSearch();
+    clearInterval(interval);
   }
 }, 500);
