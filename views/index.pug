@@ -2,13 +2,14 @@ extends layout
 
 block content
   div.container
-    h3 Book Catalogue
-    .placeholder.placeholder-search
-    .search.hidden
-      label(for="search") Search
-      input#search(type="search", name="search" placeholder="Enter title, author, genre, or year...")
-    p
-      a.button(href="/books/new") Create New Book
+    div.header-page
+      h3 Book Catalogue
+      .placeholder.placeholder-search
+      .search.hidden
+        label(for="search") Search
+        input#search(type="search", name="search" placeholder="Enter title, author, genre, or year...")
+      p
+        a.button(href="/books/new") Create New Book
     .placeholder.placeholder-table
     if books
       table.hidden

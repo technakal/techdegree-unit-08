@@ -22,7 +22,7 @@ A web application for managing a library's collection of books. Uses a JavaScrip
    2. Node.js
    3. Express
    4. Pug
-   5. SQLite and the
+   5. SQLite
    6. SQL ORM Sequelize.
 2. `npm install` shall install all necessary packages.
 3. `npm start` shall launch the Library_Catalogue.
@@ -59,7 +59,7 @@ A web application for managing a library's collection of books. Uses a JavaScrip
 12. The Home_Route shall redirect to the Books_Route.
 13. The Books_Route shall display a list of all Books.
 14. The New_Books_Route shall display the New_Book_Form.
-15. 16. The Library_Catalogue shall use Sequelize to validate entry in the New_Book_Form.
+15. The Library_Catalogue shall use Sequelize to validate entry in the New_Book_Form.
 16. When {the user submits the New_Book_Form} AND {the New_Book_Form is missing the title or author}, the Library_Catalogue shall return an error to the user.
 17. When the user submits the New_Book_Form, the Library_Catalogue shall add the Book to the Book_Table.
 18. When the user successfully submits the New_Book_Form, the Library_Catalogue shall direct the user to the Book_Route for the New_Book.

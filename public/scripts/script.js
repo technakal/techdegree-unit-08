@@ -98,7 +98,7 @@ const performSearch = e => {
   }
 
   addPagination(books.filteredBooks);
-  setActivePage(1);
+  displayActiveBooks(1);
 };
 
 /*******************************************
@@ -166,7 +166,7 @@ const addPagination = bookList => {
 const handlePaginationClick = e => {
   e.preventDefault();
   if (e.target.tagName === 'LI') {
-    setActivePage(e.target.textContent);
+    displayActiveBooks(e.target.textContent);
   }
 };
 
@@ -189,7 +189,7 @@ const setPageRange = pageNum => {
  * Displays any books in the filteredBooks array that have an index between the min and max.
  * @param {number} pageNum - The page number of the clicked pagination button.
  */
-const setActivePage = pageNum => {
+const displayActiveBooks = pageNum => {
   const { min, max } = setPageRange(pageNum);
   const currentPage = [];
 
@@ -199,7 +199,21 @@ const setActivePage = pageNum => {
     currentPage.push(book);
   }
 
+  setActivePage(pageNum - 1);
+
   displayResults(currentPage.join(''));
+};
+
+/**
+ * Sets the active page button to class "active".
+ * Removes "active" from other page buttons.
+ * @param {number} pageNum - The index number of the active page button.
+ */
+const setActivePage = pageNum => {
+  const pageContainer = document.querySelector('.pagination');
+  const pageLinks = pageContainer.querySelectorAll('ul li');
+  pageLinks.forEach(link => link.classList.remove('active'));
+  pageLinks[pageNum].classList.add('active');
 };
 
 /**
@@ -214,7 +228,7 @@ const interval = setInterval(() => {
     books.initialBooks = document.querySelectorAll('tbody tr');
     books.filteredBooks = books.initialBooks;
     addPagination(books.initialBooks);
-    setActivePage(1);
+    displayActiveBooks(1);
     setUpSearch();
     clearInterval(interval);
   }
